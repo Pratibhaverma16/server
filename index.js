@@ -8,10 +8,10 @@ app.use(express.json());
 
 
 const db= mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "pratibha",
-    database: "drdo_website"
+    host: "sql6.freemysqlhosting.net",
+    user: "sql6435928",
+    password: "NZ1eGB6KB9",
+    database: "sql6435928"
   });
   
   
@@ -19,17 +19,20 @@ const db= mysql.createConnection({
 
 app.post('/create',(req ,res ) =>{
   console.log(req.body);
-const designationName = req.body.designationName;
+const designationName = req.body.designation;
 
-db.query("INSERT INTO designation(designationName) VALUES(?)",
-[desig_name],(err,result) =>{
+db.query("INSERT INTO designation(desig_name) VALUES(?)",
+[designationName],(err,result) =>{
 
   if(err){
     console.log(err)
+    return res.status(500).send({"message":"designation not created"});
+
   }
   else{
 
-    res.send("values inserted")
+    return res.status(200).send({"message":"designation created"});
+
   }
 }
 
